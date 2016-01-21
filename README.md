@@ -33,10 +33,10 @@ If you plan to use the dataset, please cite it as follows:
 Brief Description
 ==================================
 
-These simulation concerns the experimental setup and application example used in our research for
-Context-based Thermodynamic Modeling of Building Spaces. It contains simulation files for a single Thermal Zone
-using the Buildings Controls Virtual Test Bed (BCVTB) and EnergyPlus. It also contains a Matlab simulation of
-the same building, using a Context-based model. The Dataset includes the following files:
+These simulation files concern the experimental setup and application example used for
+Context-based Thermodynamic Modeling of Building Spaces. The repository contains simulation files for a single Thermal Zone
+using the Buildings Controls Virtual Test Bed (BCVTB) and EnergyPlus. It also contains the Matlab simulation of
+the same building, using a Context-based model. The repository includes the following files:
 
 
 Simple.idf: The EnergyPlus input building used in the simulation.
