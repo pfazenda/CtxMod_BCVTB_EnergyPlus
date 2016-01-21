@@ -1,0 +1,48 @@
+
+=============== EnergyPlus =================
+   Input file  : Simple.idf
+   Weather file: PRT_Lisboa.085360_INETI.epw
+ExpandObjects Started.
+No expanded file generated.
+ExpandObjects Finished. Time:     0.010
+
+=============== EnergyPlus =================
+   Input file  : Simple.idf
+Missing Energy+.ini
+EnergyPlus Starting
+EnergyPlus, Version 8.2.0-e53a815bb2, YMD=2015.12.15 14:42
+Processing Data Dictionary
+Processing Input File
+Initializing Simulation
+Reporting Surfaces
+Initializing New Environment Parameters
+Warming up {1}
+Instantiating Building Controls Virtual Test Bed
+ExternalInterface initializes.
+Number of outputs in ExternalInterface = 7
+Number of inputs  in ExternalInterface = 7
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Warming up {6}
+Warming up {7}
+Warming up {8}
+Warming up {9}
+Warming up {10}
+Starting Simulation at 01/01 for Lisboa PRT INETI WMO#=085360
+ExternalInterface starts first data exchange.
+Writing tabular output file results using HTML format.
+EnergyPlus Run Time=00hr 00min  9.00sec
+ ReadVarsESO program starting.
+ ReadVars Run Time=00hr 00min  0.14sec
+ ReadVarsESO program completed successfully.
+ ReadVarsESO program starting.
+ Requested ESO file=eplusout.mtr
+ does not exist.  ReadVarsESO program terminated.
+ ReadVarsESO program terminated.
+  Started HVAC Diagram
+  Complete
+
+EnergyPlus output files are located in: "/home/pfazenda/Dropbox/Tese Final/Simulations/AppendixA/SolarGains With Windows HSyst 1 WDoor/Output"
+

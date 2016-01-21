@@ -1,0 +1,1644 @@
+  Processing Data Dictionary (Energy+.idd) File -- Complete
+  Maximum number of Alpha Args=        4500
+  Maximum number of Numeric Args=       21040
+  Number of Object Definitions=         731
+  Number of Section Definitions=           2
+  Total Number of Alpha Fields=       18147
+  Total Number of Numeric Fields=       39542
+  Total Number of Fields=       57689
+  Processing Input Data File (in.idf) -- Start
+      1 !+-----------------------------------------------------------------------
+      2 !|  _____  _     _____    _______ _               _     
+      3 !| |  __ \| |   |  __ \  |__   __| |             (_)    
+      4 !| | |__) | |__ | |  | |    | |  | |__   ___  ___ _ ___ 
+      5 !| |  ___/| '_ \| |  | |    | |  | '_ \ / _ \/ __| / __|
+      6 !| | |    | | | | |__| |    | |  | | | |  __/\__ \ \__ \
+      7 !| |_|    |_| |_|_____/     |_|  |_| |_|\___||___/_|___/
+      8 !|                                                                         
+      9 !|  __  __ _____ _______         _____ _______ 
+     10 !| |  \/  |_   _|__   __|       |  __ \__   __|
+     11 !| | \  / | | |    | |  ______  | |__) | | |   
+     12 !| | |\/| | | |    | | |______| |  ___/  | |   
+     13 !| | |  | |_| |_   | |          | |      | |   
+     14 !| |_|  |_|_____|  |_|          |_|      |_|   
+     15 !|
+     16 !|
+     17 !|                      Building Simulation
+     18 !+-----------------------------------------------------------------------
+     19 !|                 Sustainable Energy Systems 
+     20 !|
+     21 !|          Energy Efficiency Monitoring and Management 
+     22 !|               to Promote Sustainable Behaviors
+     23 !+-----------------------------------------------------------------------
+     24 !| Instituto Superior Técnico  
+     25 !| (http://www.ist.utl.pt/)
+     26 !|
+     27 !| Universidade Técnica de Lisboa  
+     28 !| (http://www.utl.pt/)
+     29 !| 
+     30 !| Institute for Systems and Robotics
+     31 !| (http://welcome.isr.ist.utl.pt/home/)
+     32 !|
+     33 !| MIT-Portugal Program
+     34 !| (http://www.mitportugal.org) 
+     35 !|
+     36 !| The ALFA group: Anyscale Learning for All (ALFA)
+     37 !| Computer Science and Artificial Intelligence Laboratory (CSAIL)
+     38 !| Massachusetts Institute of Technology (MIT)
+     39 !+-----------------------------------------------------------------------
+     40 !
+     41 ! Simple.idf
+     42 ! Basic file description:  
+     43 ! 1 story building with a single conditioned zone. 
+     44 ! Roof with no plenum. No ground contact with floor.
+     45 ! 4 Windows with roller shutters with thermal insulation.                
+     46 !
+     47 ! Highlights:   This file does the basic test of a single thermal zone 
+     48 !               with windows (including blinds) and a door.
+     49 !
+     50 !
+     51 ! Simulation Location/Run: Lisboa_PRT
+     52 !
+     53 ! Location:                Lisboa, INETI
+     54 !
+     55 ! Building: A single floor square-shaped building (12 m west and south walls), 
+     56 !          zone height of 3m. There is a (4 x 1.5 m) window on each of the 
+     57 !          Zone's four walls. The walls are 1 in stucco over 4 in common brick 
+     58 !          and gypboard. The roof is a built up roof with 1/2 in stone over 3/8 
+     59 !          in felt supported by 2 in heavy weight concrete. 
+     60 !
+     61 ! Floor Area:        144 m2
+     62 ! Number of Stories: 1
+     63 !
+     64 !
+     65 !
+     66 ! Conditioned Zone Description Details:
+     67 !
+     68 !       (0,12,0)         North             (12,12,0)
+     69 !           __________**** W2 ****__________
+     70 !          |                                |
+     71 !          |                                |
+     72 !          |                                |
+     73 !          *                                *
+     74 !          *                                *
+     75 !          W3            Zone 1             W3 
+     76 !          *                                *
+     77 !          *                                *
+     78 !          |                                |
+     79 !          |                                |
+     80 !          |_________**** W2 ****___________|   
+     81 !      (0,0,0)                            (12,0,0)
+     82 !    
+     83 !+-----------------------------------------------------------------------
+     84 !
+     85 !  Internal Mass:               None
+     86 !  People:                      5
+     87 !  Lights:                      0 W
+     88 !  Equipment:                   8075 W
+     89 !  Windows:                     4
+     90 !  Compact Schedules:           Yes
+     91 !  HVAC System:                 ZoneHVAC:UnitHeater
+     92 !  Coils:                       Coil:Heating:Electric,
+     93 !                               8kW + 75W (Electric Fan)
+     94 !  Natural Ventilation :        AirflowNetwork Multizone
+     95 !  Compact Schedules:           Yes
+     96 !  Solair Distribution:         FullInteriorAndExterior
+     97 ! 
+     98 !  Exterior Interfaces:
+     99 !  (BCVTB)            
+    100 !                               UnitHeatAvailability
+    101 !                               HeatingSetpoints
+    102 !                               OfficeOccupancy
+    103 !                               Shading Sch
+    104 !
+    105 !  Outputs:
+    106 !  (Timestep Variables)         Site Outdoor Air Drybulb Temperature (Ta)
+    107 !                               Zone Mean Air Temperature (Tin_EP)
+    108 !                               Surface Outside Face Temperature (T1)
+    109 !                               Surface Inside Face Temperature (T4)
+    110 !                               Surface Outside Face Temperature (Tg)
+    111 !                               System Node Temperature (Th) 
+    112 !                               System Node Mass Flow Rate (m_vh)
+    113 !
+    114 ! Reports
+    115 !                               Constructions,Constructions
+    116 !                               VariableDictionary,Regular
+    117 !                               Surfaces:Drawing,dxf
+    118 !                               Output:EnergyManagementSystem
+    119 !                               Output:Table:SummaryReports --> AllSummary;  
+    120 !
+    121 !+-----------------------------------------------------------------------
+    122   Version,8.2;
+    123 
+    124 !+-----------------------------------------------------------------------
+    125 !|                              Building
+    126 !+-----------------------------------------------------------------------
+    127 
+    128  Building,
+    129     Simple Building,                    !- Name
+    130     0,                         !- North Axis {deg}
+      ***** Tabs eliminated from above line
+    131     Suburbs,                   !- Terrain
+      ***** Tabs eliminated from above line
+    132     3.9999999E-02,             !- Loads Convergence Tolerance Value
+      ***** Tabs eliminated from above line
+    133     0.4000000,                 !- Temperature Convergence Tolerance Value {deltaC}
+      ***** Tabs eliminated from above line
+    134     MinimalShadowing,          !- Solar Distribution
+      ***** Tabs eliminated from above line
+    135     25,                        !- Maximum Number of Warmup Days
+      ***** Tabs eliminated from above line
+    136     10;                         !- Minimum Number of Warmup Days
+      ***** Tabs eliminated from above line
+    137 
+    138 !+-----------------------------------------------------------------------
+    139 !|                              Timestep
+    140 !+-----------------------------------------------------------------------
+    141 
+    142   Timestep,60;
+    143 
+    144 !+-----------------------------------------------------------------------
+    145 !|                   Inside/Outside Convection Algorithm
+    146 !+-----------------------------------------------------------------------
+    147 
+    148   SurfaceConvectionAlgorithm:Inside,Simple;
+    149   SurfaceConvectionAlgorithm:Outside,SimpleCombined;
+    150 
+    151 !+-----------------------------------------------------------------------
+    152 !|                           Solution Algorithm
+    153 !+-----------------------------------------------------------------------
+    154 
+    155   HeatBalanceAlgorithm,ConductionTransferFunction;
+    156 
+    157 
+    158 !+-----------------------------------------------------------------------
+    159 !|                            Run Control
+    160 !+-----------------------------------------------------------------------
+    161  
+    162   SimulationControl,
+    163     No,     !- Do Zone Sizing Calculation
+      ***** Tabs eliminated from above line
+    164     No,                        !- Do System Sizing Calculation
+      ***** Tabs eliminated from above line
+    165     No,                        !- Do Plant Sizing Calculation
+      ***** Tabs eliminated from above line
+    166     No,                        !- Run Simulation for Sizing Periods
+      ***** Tabs eliminated from above line
+    167     Yes;                       !- Run Simulation for Weather File Run Periods
+      ***** Tabs eliminated from above line
+    168 
+    169 !+-----------------------------------------------------------------------
+    170 !|                             Run Period
+    171 !+-----------------------------------------------------------------------
+    172 
+    173   RunPeriod,
+    174     ,     !- Name
+      ***** Tabs eliminated from above line
+    175     1,                         !- Begin Month
+      ***** Tabs eliminated from above line
+    176     1,                         !- Begin Day of Month
+      ***** Tabs eliminated from above line
+    177     1,                         !- End Month
+      ***** Tabs eliminated from above line
+    178     2,                         !- End Day of Month
+      ***** Tabs eliminated from above line
+    179     UseWeatherFile,            !- Day of Week for Start Day
+      ***** Tabs eliminated from above line
+    180     No,                        !- Use Weather File Holidays and Special Days
+      ***** Tabs eliminated from above line
+    181     No,                        !- Use Weather File Daylight Saving Period
+      ***** Tabs eliminated from above line
+    182     No,                        !- Apply Weekend Holiday Rule
+      ***** Tabs eliminated from above line
+    183     No,                        !- Use Weather File Rain Indicators
+      ***** Tabs eliminated from above line
+    184     No;                        !- Use Weather File Snow Indicators
+      ***** Tabs eliminated from above line
+    185 
+    186 !+-----------------------------------------------------------------------
+    187 !|                              Location
+    188 !+-----------------------------------------------------------------------
+    189 
+    190   Site:Location,
+    191     INETI_LISBON_PT,   !- Name
+      ***** Tabs eliminated from above line
+    192     38.73,                     !- Latitude  {deg}
+      ***** Tabs eliminated from above line
+    193     -9.15,                     !- Longitude {deg}
+      ***** Tabs eliminated from above line
+    194     0.00,                      !- Time Zone {hr}
+      ***** Tabs eliminated from above line
+    195     71.00;                     !- Elevation {m}
+      ***** Tabs eliminated from above line
+    196 
+    197 !+-----------------------------------------------------------------------
+    198 !|                       Materials for Construction
+    199 !+-----------------------------------------------------------------------
+    200 
+    201 !+--------------------+
+    202 !|  Walls and Roof    |
+    203 !+--------------------+
+    204 
+    205   Material,
+    206     STUCCO,           !- Name
+      ***** Tabs eliminated from above line
+    207     Smooth,                    !- Roughness
+      ***** Tabs eliminated from above line
+    208     2.54E-02,             !- Thickness {m}
+      ***** Tabs eliminated from above line
+    209     0.69,                 !- Conductivity {W/m-K}
+      ***** Tabs eliminated from above line
+    210     1858.000,                  !- Density {kg/m3}
+      ***** Tabs eliminated from above line
+    211     837.0000,                  !- Specific Heat {J/kg-K}
+      ***** Tabs eliminated from above line
+    212     0.9000000,                 !- Thermal Absorptance
+      ***** Tabs eliminated from above line
+    213     0.9200000,                 !- Solar Absorptance
+      ***** Tabs eliminated from above line
+    214     0.9200000;                 !- Visible Absorptance
+      ***** Tabs eliminated from above line
+    215 
+    216   Material,
+    217     COMMON BRICK,          !- Name
+      ***** Tabs eliminated from above line
+    218     Rough,                     !- Roughness
+      ***** Tabs eliminated from above line
+    219     0.1000000,                 !- Thickness {m}
+      ***** Tabs eliminated from above line
+    220     0.7300000,                 !- Conductivity {W/m-K}
+      ***** Tabs eliminated from above line
+    221     1922.0000,                  !- Density {kg/m3}
+      ***** Tabs eliminated from above line
+    222     837.0000,                  !- Specific Heat {J/kg-K}
+      ***** Tabs eliminated from above line
+    223     0.9000000,                 !- Thermal Absorptance
+      ***** Tabs eliminated from above line
+    224     0.7600000,                 !- Solar Absorptance
+      ***** Tabs eliminated from above line
+    225     0.7600000;                 !- Visible Absorptance
+      ***** Tabs eliminated from above line
+    226 
+    227   Material,
+    228     PLASTER OR GYP BOARD,               !- Name
+    229     Smooth,                     !- Roughness
+      ***** Tabs eliminated from above line
+    230     1.900E-02,                 !- Thickness {m}
+      ***** Tabs eliminated from above line
+    231     0.7260000,                 !- Conductivity {W/m-K}
+      ***** Tabs eliminated from above line
+    232     1602.000,                  !- Density {kg/m3}
+      ***** Tabs eliminated from above line
+    233     837.0000,                  !- Specific Heat {J/kg-K}
+      ***** Tabs eliminated from above line
+    234     0.9000000,                 !- Thermal Absorptance
+      ***** Tabs eliminated from above line
+    235     0.9200000,                 !- Solar Absorptance
+      ***** Tabs eliminated from above line
+    236     0.9200000;                 !- Visible Absorptance
+      ***** Tabs eliminated from above line
+    237 
+    238 !+------------+
+    239 !|  Floor     |
+    240 !+------------+
+    241 
+    242   Material,
+    243     CONCRETE,                           !- Name
+    244     MediumRough,                        !- Roughness
+    245     0.01,                               !- Thickness {m}
+    246     1.723,                              !- Conductivity {W/m-K}
+    247     2242.600,                           !- Density {kg/m3}
+    248     837.0000,                           !- Specific Heat {J/kg-K}
+    249     0.9900000,                          !- Thermal Absorptance
+    250     0.9500000,                          !- Solar Absorptance
+    251     0.9500000;                          !- Visible Absorptance
+    252 
+    253 
+    254 !+--------------------------+
+    255 !| Windows - Window Glass   |
+    256 !+--------------------------+
+    257 
+    258    WindowMaterial:Glazing,
+    259      WIN-LAY-GLASS-LIGHT,  !- Name
+      ***** Tabs eliminated from above line
+    260      SpectralAverage,           !- Optical Data Type
+      ***** Tabs eliminated from above line
+    261      ,                          !- Window Glass Spectral Data Set Name
+      ***** Tabs eliminated from above line
+    262      0.0025,                    !- Thickness {m}
+      ***** Tabs eliminated from above line
+    263      0.9,                     !- Solar Transmittance at Normal Incidence
+      ***** Tabs eliminated from above line
+    264      0.075,                   !- Front Side Solar Reflectance at Normal Incidence
+      ***** Tabs eliminated from above line
+    265      0.075,                   !- Back Side Solar Reflectance at Normal Incidence
+      ***** Tabs eliminated from above line
+    266      0.9,                   !- Visible Transmittance at Normal Incidence
+      ***** Tabs eliminated from above line
+    267      0.081,                 !- Front Side Visible Reflectance at Normal Incidence
+      ***** Tabs eliminated from above line
+    268      0.081,                   !- Back Side Visible Reflectance at Normal Incidence
+      ***** Tabs eliminated from above line
+    269      0.0,                       !- Infrared Transmittance at Normal Incidence
+      ***** Tabs eliminated from above line
+    270      0.84,                       !- Front Side Infrared Hemispherical Emissivity
+      ***** Tabs eliminated from above line
+    271      0.84,                       !- Back Side Infrared Hemispherical Emissivity
+      ***** Tabs eliminated from above line
+    272      0.70;                       !- Conductivity {W/m-K}
+      ***** Tabs eliminated from above line
+    273 
+    274 !+--------------------------+
+    275 !| Windows - Window Shade   |
+    276 !+--------------------------+
+    277 
+    278   WindowMaterial:Shade, 
+    279     ROLL SHADE,    !- Material Name
+      ***** Tabs eliminated from above line
+    280     0.0001,                      !- Solar Transmittance at normal incidence
+      ***** Tabs eliminated from above line
+    281     0.99,                       !- Solar Reflectance (same for front and back side)
+      ***** Tabs eliminated from above line
+    282     0.01,                       !- Visible Transmittance at normal incidence
+      ***** Tabs eliminated from above line
+    283     0.01,                       !- Visible reflectance (same for front and back side)
+      ***** Tabs eliminated from above line
+    284     0.01,                       !- IR Emissivity (same for front and back side)
+      ***** Tabs eliminated from above line
+    285     0.00,                      !- IR Transmittance
+      ***** Tabs eliminated from above line
+    286     0.02,                     !- Thickness (m)
+      ***** Tabs eliminated from above line
+    287     0.05,                    !- Conductivity {W/m-K}
+      ***** Tabs eliminated from above line
+    288     0.10,                      !- Shade to Glass Distance (m)
+      ***** Tabs eliminated from above line
+    289     0.0,                       !- Top Opening Multiplier
+      ***** Tabs eliminated from above line
+    290     0.0,                       !- Bottom Opening Multiplier
+      ***** Tabs eliminated from above line
+    291     0.0,                       !- Left-Side Opening Multiplier
+      ***** Tabs eliminated from above line
+    292     0.0,                       !- Right-Side Opening Multiplier
+      ***** Tabs eliminated from above line
+    293     0.25;                       !- Air-Flow Permeability
+      ***** Tabs eliminated from above line
+    294 
+    295 !+--------------------------+
+    296 !| DOOR                     |
+    297 !+--------------------------+
+    298 
+    299   Material,
+    300     1.375in-Solid-Core,      !- Name
+    301     Smooth,                  !- Roughness
+    302     5.E-02,                  !- Thickness {m}
+    303     0.0125000,               !- Conductivity {W/m-K}
+    304     600.5000,                !- Density {kg/m3}
+    305     1630.0000,               !- Specific Heat {J/kg-K}
+    306     0.9000000,               !- Thermal Absorptance
+    307     0.9200000,               !- Solar Absorptance
+    308     0.9200000;               !- Visible Absorptance
+    309 
+    310 !+-----------------------------------------------------------------------
+    311 !|                           Construction
+    312 !+-----------------------------------------------------------------------
+    313 
+    314 !+--------------------+
+    315 !|  Walls and Roof    |
+    316 !+--------------------+
+    317 
+    318   Construction,
+    319     EXTWALL,                            !- Name
+    320     STUCCO,                             !- Outside Layer
+    321     COMMON BRICK,                       !- Layer 2
+    322     PLASTER OR GYP BOARD;               !- Layer 3
+    323 
+    324 !+------------+
+    325 !|  Floor     |
+    326 !+------------+
+    327 
+    328   Construction,
+    329     FLOOR_CONST,                        !- Name
+    330        CONCRETE;                        !- Outside Layer
+    331  
+    332 !+------------+
+    333 !|  Windows   |
+    334 !+------------+
+    335 
+    336   Construction,
+    337     WIN-CON-LIGHT,                      !- Name
+    338     WIN-LAY-GLASS-LIGHT;                !- Outside Layer
+    339 
+    340 !+------------+
+    341 !|  Door      |
+    342 !+------------+
+    343 
+    344  Construction,
+    345     DOOR-CON,                !- Name
+    346     1.375in-Solid-Core;      !- Outside Layer
+    347 
+    348 
+    349 !+-----------------------------------------------------------------------
+    350 !|                                Zone
+    351 !+-----------------------------------------------------------------------
+    352 
+    353   Zone,
+    354     ZONE_1,    !- Name
+      ***** Tabs eliminated from above line
+    355     0,                         !- Direction of Relative North {deg}
+      ***** Tabs eliminated from above line
+    356     0,                         !- X Origin {m}
+      ***** Tabs eliminated from above line
+    357     0,                         !- Y Origin {m}
+      ***** Tabs eliminated from above line
+    358     0,                         !- Z Origin {m}
+      ***** Tabs eliminated from above line
+    359     1,                         !- Type
+      ***** Tabs eliminated from above line
+    360     1,                         !- Multiplier
+      ***** Tabs eliminated from above line
+    361     autocalculate;             !- Ceiling Height {m}
+      ***** Tabs eliminated from above line
+    362 
+    363 !+-----------------------------------------------------------------------
+    364 !|                    Global Surface Geometry Rules
+    365 !+-----------------------------------------------------------------------
+    366 
+    367   GlobalGeometryRules,
+    368     UpperLeftCorner,   !- Starting Vertex Position
+      ***** Tabs eliminated from above line
+    369     CounterClockWise,          !- Vertex Entry Direction
+      ***** Tabs eliminated from above line
+    370     World;                     !- Coordinate System
+      ***** Tabs eliminated from above line
+    371 
+    372 !+-----------------------------------------------------------------------
+    373 !|                    Building Surfaces - Heat Transfer
+    374 !+-----------------------------------------------------------------------
+    375  
+    376   BuildingSurface:Detailed,
+    377     Surface_1,    !- Name
+      ***** Tabs eliminated from above line
+    378     WALL,                      !- Surface Type
+      ***** Tabs eliminated from above line
+    379     EXTWALL,                 !- Construction Name
+      ***** Tabs eliminated from above line
+    380     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    381     Outdoors,                  !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    382     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    383     SunExposed,                  !- Sun Exposure
+      ***** Tabs eliminated from above line
+    384     WindExposed,                      !- Wind Exposure
+      ***** Tabs eliminated from above line
+    385     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    386     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    387        0,  0, 3.0,             !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    388        0,  0, 0,               !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    389     12.0,  0, 0,               !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    390     12.0,  0, 3.0;             !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    391 
+    392   BuildingSurface:Detailed,
+    393     Surface_2,    !- Name
+      ***** Tabs eliminated from above line
+    394     WALL,                      !- Surface Type
+      ***** Tabs eliminated from above line
+    395     EXTWALL,                 !- Construction Name
+      ***** Tabs eliminated from above line
+    396     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    397     Outdoors,                  !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    398     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    399     SunExposed,    !- Sun Exposure
+      ***** Tabs eliminated from above line
+    400     WindExposed,                      !- Wind Exposure
+      ***** Tabs eliminated from above line
+    401     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    402     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    403     0, 12.0, 3.0,              !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    404     0, 12.0, 0,                !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    405     0,    0, 0,                !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    406     0,    0, 3.0;              !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    407 
+    408   BuildingSurface:Detailed,
+    409     Surface_3,    !- Name
+      ***** Tabs eliminated from above line
+    410     WALL,                      !- Surface Type
+      ***** Tabs eliminated from above line
+    411     EXTWALL,                 !- Construction Name
+      ***** Tabs eliminated from above line
+    412     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    413     Outdoors,                  !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    414     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    415     SunExposed,                  !- Sun Exposure
+      ***** Tabs eliminated from above line
+    416     WindExposed,                 !- Wind Exposure
+      ***** Tabs eliminated from above line
+    417     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    418     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    419     12.0, 12.0, 3.0,           !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    420     12.0, 12.0,   0,           !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    421        0, 12.0,   0,           !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    422        0, 12.0, 3.0;           !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    423 
+    424   BuildingSurface:Detailed,
+    425     Surface_4,    !- Name
+      ***** Tabs eliminated from above line
+    426     WALL,                      !- Surface Type
+      ***** Tabs eliminated from above line
+    427     EXTWALL,                 !- Construction Name
+      ***** Tabs eliminated from above line
+    428     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    429     Outdoors,                  !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    430     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    431     SunExposed,                  !- Sun Exposure
+      ***** Tabs eliminated from above line
+    432     WindExposed,                 !- Wind Exposure
+      ***** Tabs eliminated from above line
+    433     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    434     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    435     12.0,    0, 3.0,           !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    436     12.0,    0,   0,           !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    437     12.0, 12.0,   0,           !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    438     12.0, 12.0, 3.0;           !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    439 
+    440   BuildingSurface:Detailed,
+    441     Surface_5,    !- Name
+      ***** Tabs eliminated from above line
+    442     FLOOR,                     !- Surface Type
+      ***** Tabs eliminated from above line
+    443     FLOOR_CONST,           !- Construction Name
+      ***** Tabs eliminated from above line
+    444     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    445     Surface,                   !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    446     Surface_5,                 !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    447     NoSun,                  !- Sun Exposure
+      ***** Tabs eliminated from above line
+    448     NoWind,                 !- Wind Exposure
+      ***** Tabs eliminated from above line
+    449     1.000000,                  !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    450     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    451        0,    0, 0,             !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    452        0, 12.0, 0,             !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    453     12.0, 12.0, 0,             !- X,Y,Z ==> Vertex 3 {m} 
+      ***** Tabs eliminated from above line
+    454     12.0,    0, 0;             !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    455    
+    456   BuildingSurface:Detailed,
+    457     Surface_6,    !- Name
+      ***** Tabs eliminated from above line
+    458     ROOF,                      !- Surface Type
+      ***** Tabs eliminated from above line
+    459     EXTWALL,                    !- Construction Name
+      ***** Tabs eliminated from above line
+    460     ZONE_1,                    !- Zone Name
+      ***** Tabs eliminated from above line
+    461     Outdoors,                  !- Outside Boundary Condition
+      ***** Tabs eliminated from above line
+    462     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    463     SunExposed,                  !- Sun Exposure
+      ***** Tabs eliminated from above line
+    464     WindExposed,                !- Wind Exposure
+      ***** Tabs eliminated from above line
+    465     0,                         !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    466     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    467        0, 12.0, 3.0,           !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    468        0,    0, 3.0,           !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    469     12.0,    0, 3.0,           !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    470     12.0, 12.0, 3.0;           !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    471 
+    472 !+---------------------------------------------------------------
+    473 !|  Setting the floor Convection Coefficeint
+    474 !+---------------------------------------------------------------
+    475  
+    476 SurfaceProperty:ConvectionCoefficients, 
+    477     Surface_5,     ! Surface Name 
+      ***** Tabs eliminated from above line
+    478     Inside,                             ! Convection Coefficient Location
+    479     Value,                              ! Convection Coefficient Type
+    480     1;                                ! Convection Coefficient  
+    481 
+    482 !+-----------------------------------------------------------------------
+    483 !|                            Zone Control
+    484 !+-----------------------------------------------------------------------
+    485 
+    486   ZoneControl:Thermostat,
+    487     Zone 1 Thermostat,   !- Name 
+      ***** Tabs eliminated from above line
+    488     ZONE_1,                    !- Zone or ZoneList Name
+      ***** Tabs eliminated from above line
+    489     Zone Control Type Sched,   !- Control Type Schedule Name
+      ***** Tabs eliminated from above line
+    490     ThermostatSetpoint:SingleHeating,  !- Control 1 Object Type
+      ***** Tabs eliminated from above line
+    491     Heating Setpoint with SB;  !- Control 1 Name
+      ***** Tabs eliminated from above line
+    492 
+    493   ThermostatSetpoint:SingleHeating,
+    494     Heating Setpoint with SB,  !- Name
+      ***** Tabs eliminated from above line
+    495     HeatingSetpoints;          !- Setpoint Temperature Schedule Name
+      ***** Tabs eliminated from above line
+    496 
+    497   ZoneHVAC:EquipmentConnections,
+    498     ZONE_1,    !- Zone Name
+      ***** Tabs eliminated from above line
+    499     Zone1Equipment,            !- Zone Conditioning Equipment List Name
+      ***** Tabs eliminated from above line
+    500     Zone1Inlets,               !- Zone Air Inlet Node or NodeList Name
+      ***** Tabs eliminated from above line
+    501     Zone1Exhausts,             !- Zone Air Exhaust Node or NodeList Name
+      ***** Tabs eliminated from above line
+    502     Zone 1 Node,               !- Zone Air Node Name
+      ***** Tabs eliminated from above line
+    503     Zone 1 Outlet Node;        !- Zone Return Air Node Name
+      ***** Tabs eliminated from above line
+    504 
+    505   ZoneHVAC:EquipmentList,
+    506     Zone1Equipment,   !- Name
+      ***** Tabs eliminated from above line
+    507     ZoneHVAC:UnitHeater,       !- Zone Equipment 1 Object Type
+      ***** Tabs eliminated from above line
+    508     Zone1UnitHeat,             !- Zone Equipment 1 Name
+      ***** Tabs eliminated from above line
+    509     1,                         !- Zone Equipment 1 Cooling Sequence
+      ***** Tabs eliminated from above line
+    510     1;                         !- Zone Equipment 1 Heating or No-Load Sequence
+      ***** Tabs eliminated from above line
+    511     
+    512   NodeList,                  
+    513     Zone1Inlets,   !- Name
+      ***** Tabs eliminated from above line
+    514     Zone1UnitHeatAirOutletNode;  !- Node 1 Name
+      ***** Tabs eliminated from above line
+    515 
+    516   NodeList,
+    517     Zone1Exhausts,   !- Name
+      ***** Tabs eliminated from above line
+    518     Zone1UnitHeatAirInletNode;   !- Node 1 Name
+      ***** Tabs eliminated from above line
+    519  
+    520 !ZoneHVAC:UnitHeater,
+    521 !    Zone1UnitHeat,   !- Name
+      ***** Tabs eliminated from above line
+    522 !    UnitHeatAvailability,      !- Availability Schedule Name
+      ***** Tabs eliminated from above line
+    523 !    Zone1UnitHeatAirInletNode,   !- Air Inlet Node Name
+      ***** Tabs eliminated from above line
+    524 !    Zone1UnitHeatAirOutletNode,  !- Air Outlet Node Name
+      ***** Tabs eliminated from above line
+    525 !    Fan:ConstantVolume,        !- Supply Air Fan Object Type
+      ***** Tabs eliminated from above line
+    526 !    Zone1UnitHeatFan,          !- Supply Air Fan Name
+      ***** Tabs eliminated from above line
+    527 !    1.0,                      !- Maximum Supply Air Flow Rate {m3/s}
+      ***** Tabs eliminated from above line
+    528 !    Continuous,                         !- Fan Control Type
+    529 !    Coil:Heating:Electric,     !- Heating Coil Object Type
+      ***** Tabs eliminated from above line
+    530 !    Zone1UnitHeatHeatingCoil,  !- Heating Coil Name
+      ***** Tabs eliminated from above line
+    531 !    ,                                   !- Supply Air Fan Operating Mode Schedule Name
+    532 !    No;                                 !- Supply Air Fan Operation During No Heating
+    533 
+    534  ZoneHVAC:UnitHeater,
+    535     Zone1UnitHeat,           !- Name
+    536     UnitHeatAvailability,    !- Availability Schedule Name
+    537     Zone1UnitHeatAirInletNode,  !- Air Inlet Node Name
+    538     Zone1UnitHeatAirOutletNode,  !- Air Outlet Node Name
+    539     Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    540     Zone1UnitHeatFan,        !- Supply Air Fan Name
+    541     1.0,                     !- Maximum Supply Air Flow Rate {m3/s}
+    542     Coil:Heating:Electric,   !- Heating Coil Object Type
+    543     Zone1UnitHeatHeatingCoil,!- Heating Coil Name
+    544     ,                        !- Supply Air Fan Operating Mode Schedule Name
+    545     No,                      !- Supply Air Fan Operation During No Heating
+    546     ,                        !- Maximum Hot Water or Steam Flow Rate {m3/s}
+    547     ,                        !- Minimum Hot Water or Steam Flow Rate {m3/s}
+    548     ;                        !- Heating Convergence Tolerance
+    549 
+    550 
+    551 
+    552   Fan:ConstantVolume,
+    553     Zone1UnitHeatFan,   !- Name
+      ***** Tabs eliminated from above line
+    554     UnitHeatAvailability,      !- Availability Schedule Name
+      ***** Tabs eliminated from above line
+    555     1.0,                       !- Fan Efficiency
+      ***** Tabs eliminated from above line
+    556     75.0,                      !- Pressure Rise {Pa}
+      ***** Tabs eliminated from above line
+    557     1.0,                      !- Maximum Flow Rate {m3/s}
+      ***** Tabs eliminated from above line
+    558     1.0,                       !- Motor Efficiency
+      ***** Tabs eliminated from above line
+    559     0.0,                       !- Motor In Airstream Fraction
+      ***** Tabs eliminated from above line
+    560     Zone1UnitHeatAirInletNode,   !- Air Inlet Node Name
+      ***** Tabs eliminated from above line
+    561     Zone1UnitHeatFanOutletNode;  !- Air Outlet Node Name
+      ***** Tabs eliminated from above line
+    562     
+    563   Coil:Heating:Electric,
+    564     Zone1UnitHeatHeatingCoil,  !- Name
+      ***** Tabs eliminated from above line
+    565     UnitHeatAvailability,      !- Availability Schedule Name
+      ***** Tabs eliminated from above line
+    566     1.0,                      !- Efficiency
+      ***** Tabs eliminated from above line
+    567     8000,                      !- Nominal Capacity {W}
+      ***** Tabs eliminated from above line
+    568     Zone1UnitHeatFanOutletNode,  !- Air Inlet Node Name
+      ***** Tabs eliminated from above line
+    569     Zone1UnitHeatAirOutletNode;  !- Air Outlet Node Name
+      ***** Tabs eliminated from above line
+    570 
+    571 !+-----------------------------------------------------------------------
+    572 !|                              Schedules
+    573 !+-----------------------------------------------------------------------
+    574 
+    575 !+------------+
+    576 !|Type Limits |
+    577 !+------------+
+    578 
+    579   ScheduleTypeLimits,
+    580     Fraction,    !- Name
+      ***** Tabs eliminated from above line
+    581     0.0,                     !- Lower Limit Value
+      ***** Tabs eliminated from above line
+    582     1.0,                     !- Upper Limit Value
+      ***** Tabs eliminated from above line
+    583     CONTINUOUS;              !- Numeric Type
+      ***** Tabs eliminated from above line
+    584 
+    585   ScheduleTypeLimits,
+    586     Temperature,   !- Name
+      ***** Tabs eliminated from above line
+    587     -60,                     !- Lower Limit Value
+      ***** Tabs eliminated from above line
+    588     200,                     !- Upper Limit Value
+      ***** Tabs eliminated from above line
+    589     CONTINUOUS,              !- Numeric Type
+      ***** Tabs eliminated from above line
+    590     Temperature;             !- Unit Type
+      ***** Tabs eliminated from above line
+    591 
+    592   ScheduleTypeLimits,
+    593     Control Type,   !- Name
+      ***** Tabs eliminated from above line
+    594     0,                       !- Lower Limit Value
+      ***** Tabs eliminated from above line
+    595     4,                       !- Upper Limit Value
+      ***** Tabs eliminated from above line
+    596     DISCRETE;                !- Numeric Type
+      ***** Tabs eliminated from above line
+    597 
+    598 !+------------+
+    599 !|Schedules   |
+    600 !+------------+
+    601 
+    602   Schedule:Compact,
+    603     ZONE CONTROL TYPE SCHED,  !- Name
+      ***** Tabs eliminated from above line
+    604     CONTROL TYPE,             !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+    605     Through: 12/31,           !- Field 1
+      ***** Tabs eliminated from above line
+    606     For Alldays,              !- Field 2
+      ***** Tabs eliminated from above line
+    607     Until: 24:00, 1.00;       !- Field 3
+      ***** Tabs eliminated from above line
+    608  
+    609   Schedule:Compact,
+    610     Activity Sch,   !- Name
+      ***** Tabs eliminated from above line
+    611     Any Number,                !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+    612     Through: 12/31,            !- Field 1
+      ***** Tabs eliminated from above line
+    613     For: AllDays,              !- Field 2
+      ***** Tabs eliminated from above line
+    614     Until: 24:00,131.8;        !- Field 3
+      ***** Tabs eliminated from above line
+    615 
+    616   !- Work Efficiency Schedule.
+    617   !- All of the energy produced in the body is converted to heat.
+    618   Schedule:Compact,
+    619     Work Eff Sch,   !- Name
+      ***** Tabs eliminated from above line
+    620     Any Number,                !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+    621     Through: 12/31,            !- Field 1
+      ***** Tabs eliminated from above line
+    622     For: AllDays,              !- Field 2
+      ***** Tabs eliminated from above line
+    623     Until: 24:00,0.0;          !- Field 3 
+      ***** Tabs eliminated from above line
+    624   
+    625   !- Clothing Insulation Schedule
+    626   Schedule:Compact,
+    627     Clothing Sch,   !- Name
+      ***** Tabs eliminated from above line
+    628     Any Number,                !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+    629     Through: 12/31,            !- Field 1
+      ***** Tabs eliminated from above line
+    630     For: AllDays,              !- Field 2
+      ***** Tabs eliminated from above line
+    631     Until: 24:00,1.0;          !- Field 3
+      ***** Tabs eliminated from above line
+    632 
+    633   !- Air velocity Schedule (meters/second)
+    634   Schedule:Compact,
+    635     Air Velo Sch,   !- Name
+      ***** Tabs eliminated from above line
+    636     Any Number,                !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+    637     Through: 12/31,            !- Field 1
+      ***** Tabs eliminated from above line
+    638     For: AllDays,              !- Field 2
+      ***** Tabs eliminated from above line
+    639     Until: 24:00,0.137;        !- Field 3
+      ***** Tabs eliminated from above line
+    640 
+    641  Schedule:Compact,
+    642     WindowVentSched,                    !- Name
+    643     Any Number,                         !- Schedule Type Limits Name
+    644     Through: 12/31,                     !- Field 1
+    645     For: AllDays,                       !- Field 2
+    646     Until: 12:00,30,                    !- Field 3   
+    647     Until: 14:00,15,                    !- Field 4
+    648     Until: 24:00,30;                    !- Field 5
+    649 
+    650 !+-----------------------------------------------------------------------
+    651 !|                       Windows Shade Control 
+    652 !+-----------------------------------------------------------------------
+    653 
+    654   WindowProperty:ShadingControl, 
+    655     WINDOW_SHADING_CONTROL,  !- Name of Shading Control
+      ***** Tabs eliminated from above line
+    656     ExteriorShade,               !- Shading Type
+      ***** Tabs eliminated from above line
+    657     ,                            !- Name of construction with shading device
+      ***** Tabs eliminated from above line
+    658     OnIfScheduleAllows,           !- Shading Control Type
+      ***** Tabs eliminated from above line
+    659     Shading Sch,                 !- Schedule name
+      ***** Tabs eliminated from above line
+    660     ,                                !- Setpoint {W/m2}
+      ***** Tabs eliminated from above line
+    661     YES,                         !- Shading Control Is Scheduled
+      ***** Tabs eliminated from above line
+    662     NO,                          !- Glare Control Is Active
+      ***** Tabs eliminated from above line
+    663     ROLL SHADE,                  !- Material Name of Shading Device
+      ***** Tabs eliminated from above line
+    664     ,                              !- Type of Slat Angle Control for Blinds
+      ***** Tabs eliminated from above line
+    665     ;                            !- Slat Angle Schedule Name  
+      ***** Tabs eliminated from above line
+    666 
+    667 
+    668 !+-----------------------------------------------------------------------
+    669 !|                             Windows 
+    670 !+-----------------------------------------------------------------------
+    671 
+    672 
+    673  FenestrationSurface:Detailed,
+    674     WINDOW1,    !- Name
+      ***** Tabs eliminated from above line
+    675     WINDOW,                    !- Surface Type
+      ***** Tabs eliminated from above line
+    676     WIN-CON-LIGHT,             !- Construction Name
+      ***** Tabs eliminated from above line
+    677     Surface_1,                 !- Building Surface Name
+      ***** Tabs eliminated from above line
+    678     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    679     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    680     WINDOW_SHADING_CONTROL,    !- Shading Control Name
+      ***** Tabs eliminated from above line
+    681     ,                          !- Frame and Divider Name
+      ***** Tabs eliminated from above line
+    682     1.0,                       !- Multiplier
+      ***** Tabs eliminated from above line
+    683     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    684     4.0, 0, 2.5,               !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    685     4.0, 0, 1.0,               !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    686     8.0, 0, 1.0,               !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    687     8.0, 0, 2.5;               !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    688 
+    689   FenestrationSurface:Detailed,
+    690     WINDOW2,    !- Name
+      ***** Tabs eliminated from above line
+    691     WINDOW,                    !- Surface Type
+      ***** Tabs eliminated from above line
+    692     WIN-CON-LIGHT,             !- Construction Name
+      ***** Tabs eliminated from above line
+    693     Surface_2,                 !- Building Surface Name
+      ***** Tabs eliminated from above line
+    694     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    695     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    696     WINDOW_SHADING_CONTROL,    !- Shading Control Name
+      ***** Tabs eliminated from above line
+    697     ,                          !- Frame and Divider Name
+      ***** Tabs eliminated from above line
+    698     1.0,                       !- Multiplier
+      ***** Tabs eliminated from above line
+    699     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    700     0.0, 8.0, 2.50,            !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    701     0.0, 8.0, 1.00,            !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    702     0.0, 4.0, 1.00,            !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    703     0.0, 4.0, 2.50;            !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    704   
+    705   FenestrationSurface:Detailed,
+    706     WINDOW3,    !- Name
+      ***** Tabs eliminated from above line
+    707     WINDOW,                    !- Surface Type
+      ***** Tabs eliminated from above line
+    708     WIN-CON-LIGHT,             !- Construction Name
+      ***** Tabs eliminated from above line
+    709     Surface_3,                 !- Building Surface Name
+      ***** Tabs eliminated from above line
+    710     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    711     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    712     WINDOW_SHADING_CONTROL,    !- Shading Control Name
+      ***** Tabs eliminated from above line
+    713     ,                          !- Frame and Divider Name
+      ***** Tabs eliminated from above line
+    714     1.0,                       !- Multiplier
+      ***** Tabs eliminated from above line
+    715     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    716     8.0, 12.0, 2.5,            !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    717     8.0, 12.0, 1.0,            !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    718     4.0, 12.0, 1.0,            !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    719     4.0, 12.0, 2.5;            !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    720 
+    721   FenestrationSurface:Detailed,
+    722     WINDOW4,    !- Name
+      ***** Tabs eliminated from above line
+    723     WINDOW,                    !- Surface Type
+      ***** Tabs eliminated from above line
+    724     WIN-CON-LIGHT,            !- Construction Name
+      ***** Tabs eliminated from above line
+    725     Surface_4,                 !- Building Surface Name
+      ***** Tabs eliminated from above line
+    726     ,                          !- Outside Boundary Condition Object
+      ***** Tabs eliminated from above line
+    727     0.5000000,                 !- View Factor to Ground
+      ***** Tabs eliminated from above line
+    728     WINDOW_SHADING_CONTROL,    !- Shading Control Name
+      ***** Tabs eliminated from above line
+    729     ,                          !- Frame and Divider Name
+      ***** Tabs eliminated from above line
+    730     1.0,                       !- Multiplier
+      ***** Tabs eliminated from above line
+    731     4,                         !- Number of Vertices
+      ***** Tabs eliminated from above line
+    732     12.0, 4.0, 2.50,           !- X,Y,Z ==> Vertex 1 {m}
+      ***** Tabs eliminated from above line
+    733     12.0, 4.0, 1.00,           !- X,Y,Z ==> Vertex 2 {m}
+      ***** Tabs eliminated from above line
+    734     12.0, 8.0, 1.00,           !- X,Y,Z ==> Vertex 3 {m}
+      ***** Tabs eliminated from above line
+    735     12.0, 8.0, 2.50;           !- X,Y,Z ==> Vertex 4 {m}
+      ***** Tabs eliminated from above line
+    736 
+    737 
+    738 !+-----------------------------------------------------------------------
+    739 !|                                Door
+    740 !+-----------------------------------------------------------------------
+    741 
+    742 
+    743  FenestrationSurface:Detailed,
+    744     DOOR1,                   !- Name
+    745     DOOR,                    !- Surface Type
+    746     DOOR-CON,                !- Construction Name
+    747     Surface_1,               !- Building Surface Name
+    748     ,                        !- Outside Boundary Condition Object
+    749     0.50000,                 !- View Factor to Ground
+    750     ,                        !- Shading Control Name
+    751     ,                        !- Frame and Divider Name
+    752     1,                       !- Multiplier
+    753     4,                       !- Number of Vertices
+    754      9.0,0.0,2.1,            !- X,Y,Z ==> Vertex 1 {m}
+    755     10.0,0.0,2.1,            !- X,Y,Z ==> Vertex 2 {m}
+    756     10.0,0.0,0.0,            !- X,Y,Z ==> Vertex 3 {m}
+    757      9.0,0.0,0.0;            !- X,Y,Z ==> Vertex 4 {m}
+    758 
+    759 
+    760 !-   ===========  ALL OBJECTS IN CLASS: PEOPLE ===========
+    761 
+    762   People,
+    763     ZONE_1 People,   !- Name
+      ***** Tabs eliminated from above line
+    764     ZONE_1,                    !- Zone or ZoneList Name
+      ***** Tabs eliminated from above line
+    765     OfficeOccupancy,           !- Number of People Schedule Name
+      ***** Tabs eliminated from above line
+    766     people,                    !- Number of People Calculation Method
+      ***** Tabs eliminated from above line
+    767     1.000000,                  !- Number of People
+      ***** Tabs eliminated from above line
+    768     ,                          !- People per Zone Floor Area {person/m2}
+      ***** Tabs eliminated from above line
+    769     ,                          !- Zone Floor Area per Person {m2/person}
+      ***** Tabs eliminated from above line
+    770     0.3000000,                 !- Fraction Radiant
+      ***** Tabs eliminated from above line
+    771     ,                          !- Sensible Heat Fraction
+      ***** Tabs eliminated from above line
+    772     Activity Sch,              !- Activity Level Schedule Name
+      ***** Tabs eliminated from above line
+    773     3.82E-8,                   !- Carbon Dioxide Generation Rate {m3/s-W}
+      ***** Tabs eliminated from above line
+    774     ,                          !- Enable ASHRAE 55 Comfort Warnings
+      ***** Tabs eliminated from above line
+    775     zoneaveraged,              !- Mean Radiant Temperature Calculation Type
+      ***** Tabs eliminated from above line
+    776     ,                          !- Surface Name/Angle Factor List Name
+      ***** Tabs eliminated from above line
+    777     Work Eff Sch,              !- Work Efficiency Schedule Name
+      ***** Tabs eliminated from above line
+    778     Clothing Sch,              !- Clothing Insulation Schedule Name
+      ***** Tabs eliminated from above line
+    779     Air Velo Sch,              !- Air Velocity Schedule Name
+      ***** Tabs eliminated from above line
+    780     FANGER;                    !- Thermal Comfort Model 1 Type
+      ***** Tabs eliminated from above line
+    781 
+    782 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK SIMULATION ===========
+    783 
+    784   AirflowNetwork:SimulationControl,
+    785     NaturalVentilation,                 !- Name
+    786     MultizoneWithoutDistribution,       !- AirflowNetwork Control
+    787     INPUT,                              !- Wind Pressure Coefficient Type
+    788     Every 30 Degrees,                   !- AirflowNetwork Wind Pressure Coefficient Array Name
+    789     ExternalNode,                       !- Height Selection for Local Wind Speed Calculation
+    790     LOWRISE,                            !- Building Type
+    791     500,                                !- Maximum Number of Iterations {dimensionless}
+    792     ZeroNodePressures,                  !- Initialization Type
+    793     1.0E-05,                            !- Relative Airflow Convergence Tolerance {dimensionless}
+    794     1.0E-06,                            !- Absolute Airflow Convergence Tolerance {kg/s}
+    795     -0.5,                               !- Convergence Acceleration Limit {dimensionless}
+    796     0.0,                                !- Azimuth Angle of Long Axis of Building {deg}
+    797     1.0;                                !- Ratio of Building Width Along Short Axis to Width Along Long Axis
+    798 
+    799 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:ZONE ===========
+    800 
+    801   AirflowNetwork:MultiZone:Zone,
+    802     ZONE_1,              !- Zone Name
+    803     Temperature,         !- Ventilation Control Mode
+    804     WindowVentSched,     !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    805     1.0,                 !- Minimum Venting Open Factor {dimensionless}
+    806     0.0001,              !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    807     0.0002,              !- Indoor and Outdoor Temperature Difference Upper Limit for Minimun Venting Open Factor {deltaC}
+    808     0.0,                 !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    809     300000.0;            !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimun Venting Open Factor {deltaJ/kg}
+    810 
+    811 
+    812 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:SURFACE ===========
+    813 
+    814   AirflowNetwork:MultiZone:Surface,
+    815     Surface_1,                          !- Surface Name
+    816     CR-1,                               !- Leakage Component Name
+    817     SFacade,                            !- External Node Name
+    818     1.0;                                !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    819 
+    820   AirflowNetwork:MultiZone:Surface,
+    821     Surface_2,                          !- Surface Name
+    822     CR-1,                               !- Leakage Component Name
+    823     SFacade,                            !- External Node Name
+    824     1.0;                                !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    825 
+    826   AirflowNetwork:MultiZone:Surface,
+    827     Surface_3,                          !- Surface Name
+    828     CR-1,                               !- Leakage Component Name
+    829     SFacade,                            !- External Node Name
+    830     1.0;                                !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    831 
+    832   AirflowNetwork:MultiZone:Surface,
+    833     Surface_4,                          !- Surface Name
+    834     CR-1,                               !- Leakage Component Name
+    835     SFacade,                            !- External Node Name
+    836     1.0;                                !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    837 
+    838   AirflowNetwork:MultiZone:Surface,
+    839     Window1,                            !- Surface Name
+    840     Wi_D_Open1,                         !- Leakage Component Name
+    841     SFacade,                            !- External Node Name
+    842     0.01;                               !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    843 
+    844   AirflowNetwork:MultiZone:Surface,
+    845     Window2,                            !- Surface Name
+    846     Wi_D_Open1,                         !- Leakage Component Name
+    847     NFacade,                            !- External Node Name
+    848     0.01;                               !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    849 
+    850   AirflowNetwork:MultiZone:Surface,
+    851     DOOR1,                              !- Surface Name
+    852     Wi_D_Open1,                         !- Leakage Component Name
+    853     NFacade,                            !- External Node Name
+    854     0.01;                               !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    855 
+    856 
+    857 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:COMPONENT DETAILED OPENING ===========
+    858 
+    859   AirflowNetwork:MultiZone:Component:DetailedOpening,
+    860     Wi_D_Open1,              !- Name
+    861     0.001,                   !- Air Mass Flow Coefficient When Opening is Closed {kg/s-m}
+    862     0.667,                   !- Air Mass Flow Exponent When Opening is Closed {dimensionless}
+    863     NonPivoted,              !- Type of Rectanguler Large Vertical Opening (LVO)
+    864     0.0,                     !- Extra Crack Length or Height of Pivoting Axis {m}
+    865     2,                       !- Number of Sets of Opening Factor Data
+    866     0.0,                     !- Opening Factor 1 {dimensionless}
+    867     0.5,                     !- Discharge Coefficient for Opening Factor 1 {dimensionless}
+    868     0.0,                     !- Width Factor for Opening Factor 1 {dimensionless}
+    869     1.0,                     !- Height Factor for Opening Factor 1 {dimensionless}
+    870     0.0,                     !- Start Height Factor for Opening Factor 1 {dimensionless}
+    871     1.0,                     !- Opening Factor 2 {dimensionless}
+    872     0.6,                     !- Discharge Coefficient for Opening Factor 2 {dimensionless}
+    873     1.0,                     !- Width Factor for Opening Factor 2 {dimensionless}
+    874     1.0,                     !- Height Factor for Opening Factor 2 {dimensionless}
+    875     0.0,                     !- Start Height Factor for Opening Factor 2 {dimensionless}
+    876     0,                       !- Opening Factor 3 {dimensionless}
+    877     0,                       !- Discharge Coefficient for Opening Factor 3 {dimensionless}
+    878     0,                       !- Width Factor for Opening Factor 3 {dimensionless}
+    879     0,                       !- Height Factor for Opening Factor 3 {dimensionless}
+    880     0,                       !- Start Height Factor for Opening Factor 3 {dimensionless}
+    881     0,                       !- Opening Factor 4 {dimensionless}
+    882     0,                       !- Discharge Coefficient for Opening Factor 4 {dimensionless}
+    883     0,                       !- Width Factor for Opening Factor 4 {dimensionless}
+    884     0,                       !- Height Factor for Opening Factor 4 {dimensionless}
+    885     0;                       !- Start Height Factor for Opening Factor 4 {dimensionless}
+    886 
+    887 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:REFERENCE CRACK CONDITIONS ===========
+    888 
+    889   AirflowNetwork:MultiZone:ReferenceCrackConditions,
+    890     ReferenceCrackConditions,!- Name
+    891     20.0,                    !- Reference Temperature {C}
+    892     101320,                  !- Reference Barometric Pressure {Pa}
+    893     0.005;                   !- Reference Humidity Ratio {kgWater/kgDryAir}
+    894 
+    895 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:SURFACE CRACK DATA ===========
+    896 
+    897   AirflowNetwork:MultiZone:Surface:Crack,
+    898     CR-1,                    !- Name
+    899     0.01,                    !- Air Mass Flow Coefficient at Reference Conditions {kg/s}
+    900     0.667,                   !- Air Mass Flow Exponent {dimensionless}
+    901     ReferenceCrackConditions;!- Reference Crack Conditions
+    902 
+    903 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:EXTERNAL NODE ===========
+    904 
+    905   AirflowNetwork:MultiZone:ExternalNode,
+    906     NFacade,                 !- Name
+    907     1.524,                   !- External Node Height {m}
+    908     NFacade_WPCValue;        !- Wind Pressure Coefficient Values Object Name
+    909 
+    910   AirflowNetwork:MultiZone:ExternalNode,
+    911     EFacade,                 !- Name
+    912     1.524,                   !- External Node Height {m}
+    913     EFacade_WPCValue;        !- Wind Pressure Coefficient Values Object Name
+    914 
+    915   AirflowNetwork:MultiZone:ExternalNode,
+    916     SFacade,                 !- Name
+    917     1.524,                   !- External Node Height {m}
+    918     SFacade_WPCValue;        !- Wind Pressure Coefficient Values Object Name
+    919 
+    920   AirflowNetwork:MultiZone:ExternalNode,
+    921     WFacade,                 !- Name
+    922     1.524,                   !- External Node Height {m}
+    923     WFacade_WPCValue;        !- Wind Pressure Coefficient Values Object Name
+    924 
+    925 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:Wind Pressure Coefficient Array ===========
+    926 
+    927   AirflowNetwork:MultiZone:WindPressureCoefficientArray,
+    928     Every 30 Degrees,        !- Name
+    929     0,                       !- Wind Direction 1 {deg}
+    930     30,                      !- Wind Direction 2 {deg}
+    931     60,                      !- Wind Direction 3 {deg}
+    932     90,                      !- Wind Direction 4 {deg}
+    933     120,                     !- Wind Direction 5 {deg}
+    934     150,                     !- Wind Direction 6 {deg}
+    935     180,                     !- Wind Direction 7 {deg}
+    936     210,                     !- Wind Direction 8 {deg}
+    937     240,                     !- Wind Direction 9 {deg}
+    938     270,                     !- Wind Direction 10 {deg}
+    939     300,                     !- Wind Direction 11 {deg}
+    940     330;                     !- Wind Direction 12 {deg}
+    941 
+    942 !-   =======  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:Wind Pressure Coefficient Values ===========
+    943 
+    944   AirflowNetwork:MultiZone:WindPressureCoefficientValues,
+    945     NFacade_WPCValue,        !- Name
+    946     Every 30 Degrees,        !- AirflowNetwork:MultiZone:WindPressureCoefficientArray Name
+    947      0.60,                   !- Wind Pressure Coefficient Value 1 {dimensionless}
+    948      0.48,                   !- Wind Pressure Coefficient Value 2 {dimensionless}
+    949      0.04,                   !- Wind Pressure Coefficient Value 3 {dimensionless}
+    950     -0.56,                   !- Wind Pressure Coefficient Value 4 {dimensionless}
+    951     -0.56,                   !- Wind Pressure Coefficient Value 5 {dimensionless}
+    952     -0.42,                   !- Wind Pressure Coefficient Value 6 {dimensionless}
+    953     -0.37,                   !- Wind Pressure Coefficient Value 7 {dimensionless}
+    954     -0.42,                   !- Wind Pressure Coefficient Value 8 {dimensionless}
+    955     -0.56,                   !- Wind Pressure Coefficient Value 9 {dimensionless}
+    956     -0.56,                   !- Wind Pressure Coefficient Value 10 {dimensionless}
+    957      0.04,                   !- Wind Pressure Coefficient Value 11 {dimensionless}
+    958      0.48;                   !- Wind Pressure Coefficient Value 12 {dimensionless}
+    959 
+    960   AirflowNetwork:MultiZone:WindPressureCoefficientValues,
+    961     EFacade_WPCValue,        !- Name
+    962     Every 30 Degrees,        !- AirflowNetwork:MultiZone:WindPressureCoefficientArray Name
+    963     -0.56,                   !- Wind Pressure Coefficient Value 1 {dimensionless}
+    964      0.04,                   !- Wind Pressure Coefficient Value 2 {dimensionless}
+    965      0.48,                   !- Wind Pressure Coefficient Value 3 {dimensionless}
+    966      0.60,                   !- Wind Pressure Coefficient Value 4 {dimensionless}
+    967      0.48,                   !- Wind Pressure Coefficient Value 5 {dimensionless}
+    968      0.04,                   !- Wind Pressure Coefficient Value 6 {dimensionless}
+    969     -0.56,                   !- Wind Pressure Coefficient Value 7 {dimensionless}
+    970     -0.56,                   !- Wind Pressure Coefficient Value 8 {dimensionless}
+    971     -0.42,                   !- Wind Pressure Coefficient Value 9 {dimensionless}
+    972     -0.37,                   !- Wind Pressure Coefficient Value 10 {dimensionless}
+    973     -0.42,                   !- Wind Pressure Coefficient Value 11 {dimensionless}
+    974     -0.56;                   !- Wind Pressure Coefficient Value 12 {dimensionless}
+    975 
+    976   AirflowNetwork:MultiZone:WindPressureCoefficientValues,
+    977     SFacade_WPCValue,        !- Name
+    978     Every 30 Degrees,        !- AirflowNetwork:MultiZone:WindPressureCoefficientArray Name
+    979     -0.37,                   !- Wind Pressure Coefficient Value 1 {dimensionless}
+    980     -0.42,                   !- Wind Pressure Coefficient Value 2 {dimensionless}
+    981     -0.56,                   !- Wind Pressure Coefficient Value 3 {dimensionless}
+    982     -0.56,                   !- Wind Pressure Coefficient Value 4 {dimensionless}
+    983      0.04,                   !- Wind Pressure Coefficient Value 5 {dimensionless}
+    984      0.48,                   !- Wind Pressure Coefficient Value 6 {dimensionless}
+    985      0.60,                   !- Wind Pressure Coefficient Value 7 {dimensionless}
+    986      0.48,                   !- Wind Pressure Coefficient Value 8 {dimensionless}
+    987      0.04,                   !- Wind Pressure Coefficient Value 9 {dimensionless}
+    988     -0.56,                   !- Wind Pressure Coefficient Value 10 {dimensionless}
+    989     -0.56,                   !- Wind Pressure Coefficient Value 11 {dimensionless}
+    990     -0.42;                   !- Wind Pressure Coefficient Value 12 {dimensionless}
+    991 
+    992   AirflowNetwork:MultiZone:WindPressureCoefficientValues,
+    993     WFacade_WPCValue,        !- Name
+    994     Every 30 Degrees,        !- AirflowNetwork:MultiZone:WindPressureCoefficientArray Name
+    995     -0.56,                   !- Wind Pressure Coefficient Value 1 {dimensionless}
+    996     -0.56,                   !- Wind Pressure Coefficient Value 2 {dimensionless}
+    997     -0.42,                   !- Wind Pressure Coefficient Value 3 {dimensionless}
+    998     -0.37,                   !- Wind Pressure Coefficient Value 4 {dimensionless}
+    999     -0.42,                   !- Wind Pressure Coefficient Value 5 {dimensionless}
+   1000     -0.56,                   !- Wind Pressure Coefficient Value 6 {dimensionless}
+   1001     -0.56,                   !- Wind Pressure Coefficient Value 7 {dimensionless}
+   1002      0.04,                   !- Wind Pressure Coefficient Value 8 {dimensionless}
+   1003      0.48,                   !- Wind Pressure Coefficient Value 9 {dimensionless}
+   1004      0.60,                   !- Wind Pressure Coefficient Value 10 {dimensionless}
+   1005      0.48,                   !- Wind Pressure Coefficient Value 11 {dimensionless}
+   1006      0.04;                   !- Wind Pressure Coefficient Value 12 {dimensionless}
+   1007  
+   1008 !+-----------------------------------------------------------------------
+   1009 !|      Building Controls Virtual Test Bed (BCVTB) Interface
+   1010 !+-----------------------------------------------------------------------
+   1011 
+   1012   ExternalInterface,
+   1013     PtolemyServer;   !- Name of External Interface
+      ***** Tabs eliminated from above line
+   1014   
+   1015   ExternalInterface:Schedule,
+   1016     UnitHeatAvailability,  !- Name
+      ***** Tabs eliminated from above line
+   1017     FRACTION,                    !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+   1018     0.0;                         !- Initial Value
+      ***** Tabs eliminated from above line
+   1019 
+   1020   ExternalInterface:Schedule,
+   1021     HeatingSetpoints,   !- Name    
+      ***** Tabs eliminated from above line
+   1022     TEMPERATURE,                 !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+   1023     20;                          !- Initial Value
+      ***** Tabs eliminated from above line
+   1024 
+   1025   ExternalInterface:Schedule,
+   1026     OfficeOccupancy,   !- Name    
+      ***** Tabs eliminated from above line
+   1027     FRACTION,                    !- Schedule Type Limits Name
+      ***** Tabs eliminated from above line
+   1028     0.0;                         !- Initial Value
+      ***** Tabs eliminated from above line
+   1029 
+   1030   ExternalInterface:Schedule,           
+   1031     Shading Sch,                        !- Name
+   1032     CONTROL TYPE,                       !- Schedule Type Limits Name
+   1033     1.0;                                !- Initial Value    
+   1034 
+   1035   ExternalInterface:Actuator,
+   1036     Window1OF,                          !- Name
+   1037     WINDOW1,                            !- Actuated Component Unique Name
+   1038     AirFlow Network Window/Door Opening,!- Actuated Component Type
+   1039     Venting Opening Factor;             !- Actuated Component Control Type
+   1040 
+   1041   ExternalInterface:Actuator,
+   1042     Window2OF,                          !- Name
+   1043     WINDOW2,                            !- Actuated Component Unique Name
+   1044     AirFlow Network Window/Door Opening,!- Actuated Component Type
+   1045     Venting Opening Factor;             !- Actuated Component Control Type
+   1046 
+   1047   ExternalInterface:Actuator,
+   1048     Door1OF,                            !- Name
+   1049     DOOR1,                              !- Actuated Component Unique Name
+   1050     AirFlow Network Window/Door Opening,!- Actuated Component Type
+   1051     Venting Opening Factor;             !- Actuated Component Control Type
+   1052 
+   1053 !-   ===========  ALL OBJECTS IN CLASS: REPORT VARIABLE ==============
+   1054 
+   1055 !+-------------------------------+
+   1056 !| Ambient and Zone Temperatures
+   1057 !+-------------------------------+
+   1058 
+   1059 !  Tin_EP 
+   1060   Output:Variable,ZONE_1,Zone Mean Air Temperature, Timestep;
+   1061 
+   1062 !  Ta  
+   1063   Output:Variable,ENVIRONMENT,Site Outdoor Air Drybulb Temperature, Timestep;
+   1064 
+   1065 !+-----------------------+
+   1066 !| Envelope Variables    |
+   1067 !+-----------------------+
+   1068 !  T1_EP   
+   1069   Output:Variable,Surface_1,Surface Outside Face Temperature, Timestep;
+   1070 
+   1071 !  T4_EP
+   1072   Output:Variable,Surface_1,Surface Inside Face Temperature, Timestep;
+   1073 
+   1074 !+-----------------------+
+   1075 !|  Ground Variables     |
+   1076 !+-----------------------+
+   1077 
+   1078  !Output:Variable,*,Site Ground Temperature, Timestep;
+   1079  !Output:Variable,*,Site Deep Ground Temperature, Timestep;
+   1080  !Output:Variable,Surface_5,Surface Inside Face Temperature, Timestep;
+   1081 
+   1082 ! Tg_EP
+   1083   Output:Variable,Surface_5,Surface Outside Face Temperature, Timestep;
+   1084  
+   1085  !Output:variable,Surface_5,Surface Outside Face Convection Heat Transfer Coefficient,Timestep;
+   1086  !Output:variable,Surface_5,Surface Inside Face Convection Heat Transfer Coefficient,Timestep;
+   1087  !Output:variable,Surface_5,Surface Inside Face Convection Heat Gain Rate,Timestep;
+   1088  !Output:variable,Surface_5,Surface Inside Face Convection Heat Gain Rate per Area,Timestep;
+   1089 
+   1090 !+----------+
+   1091 !|  hext    |
+   1092 !+----------+
+   1093 !Output:variable,Surface_4,Surface Outside Face Convection Heat Transfer Coefficient,Timestep;
+   1094 
+   1095 !+----------+
+   1096 !|  hint    |
+   1097 !+----------+
+   1098 !Output:variable,Surface_4,Surface Inside Face Convection Heat Transfer Coefficient,Timestep;
+   1099 
+   1100 !+-----------------------+
+   1101 !|  Heater               |
+   1102 !+-----------------------+
+   1103 
+   1104 !Output:variable,Zone1UnitHeatAirInletNode,System Node Temperature,Timestep;
+   1105 !Output:variable,Zone1UnitHeatFanOutletNode,System Node Temperature,Timestep;
+   1106 
+   1107 ! Tg_EP
+   1108 Output:variable,Zone1UnitHeatAirOutletNode,System Node Temperature,Timestep;
+   1109 
+   1110 ! m_vh
+   1111 Output:variable,Zone1UnitHeatAirOutletNode,System Node Mass Flow Rate,Timestep;
+   1112 
+   1113 !Output:variable,*,Fan Electric Power,Timestep;
+   1114 !Output:variable,*,Fan Rise in Air Temperature,Timestep;
+   1115 !Output:variable,*,Zone Unit Heater Heating Rate,Timestep;
+   1116 !Output:variable,*,Heating Coil Electric Power,Timestep;
+   1117 
+   1118 !+--------------+
+   1119 !| Occupancy    |
+   1120 !+--------------+
+   1121 
+   1122 !Output:variable,*,Zone People Radiant Heating Rate,Timestep;
+   1123 !Output:variable,*,Zone People Convective Heating Rate,Timestep;
+   1124 !Output:variable,*,Zone People Total Heating Rate,Timestep;
+   1125 
+   1126 !+-----------------------+
+   1127 !|  Solar                |
+   1128 !+-----------------------+
+   1129 
+   1130 Output:Variable,Surface_1,Surface Outside Face Solar Radiation Heat Gain Rate per Area, Timestep;
+   1131 Output:Variable,Surface_2,Surface Outside Face Solar Radiation Heat Gain Rate per Area, Timestep;
+   1132 Output:Variable,Surface_3,Surface Outside Face Solar Radiation Heat Gain Rate per Area, Timestep;
+   1133 Output:Variable,Surface_4,Surface Outside Face Solar Radiation Heat Gain Rate per Area, Timestep;
+   1134 Output:Variable,Surface_6,Surface Outside Face Solar Radiation Heat Gain Rate per Area, Timestep;
+   1135 
+   1136 Output:Variable,ZONE_1,Zone Windows Total Transmitted Solar Radiation Rate, Timestep;
+   1137 
+   1138 !+--------------------+
+   1139 !| Window Air Flow    |
+   1140 !+--------------------+
+   1141 
+   1142 Output:Variable,Window1,AFN Linkage Node 1 to Node 2 Volume Flow Rate,timestep;
+   1143 
+   1144 !-   ===========  ALL OBJECTS IN CLASS: REPORT ===========
+   1145 
+   1146   Output:Constructions,Constructions;
+   1147 
+   1148   Output:VariableDictionary,Regular;
+   1149 
+   1150   Output:Surfaces:Drawing,dxf;
+   1151 
+   1152   OutputControl:Table:Style,
+   1153     HTML;    !- Column Separator
+      ***** Tabs eliminated from above line
+   1154 
+   1155   Output:Table:SummaryReports,
+   1156     AllSummary;    !- Report 1 Name
+      ***** Tabs eliminated from above line
+   1157 
+   1158   Output:Diagnostics, DisplayExtraWarnings;
+   1159 
+   1160   Output:EnergyManagementSystem,
+   1161     Verbose,    ! Actuator Availability Dictionary Reporting
+      ***** Tabs eliminated from above line
+   1162     Verbose,                   ! Internal Variable Availability Dictionary Reporting
+      ***** Tabs eliminated from above line
+   1163     Verbose;                   ! EnergyPlus Runtime Language Debug Output Level  
+      ***** Tabs eliminated from above line
+  Processing Input Data File (in.idf) -- Complete
+  Maximum number of Alpha IDF Args=          12
+  Maximum number of Numeric IDF Args=          24
+  Number of IDF "Lines"=         104
+  Number of Defaulted Fields=           5
+  Number of Fields with Defaults=         200
+  Number of Autosized Fields=           0
+  Number of Autosizable Fields =           4
+  Number of Autocalculated Fields=           2
+  Number of Autocalculatable Fields =          24
+ Getting object=VERSION
+ Getting object=HEATBALANCEALGORITHM
+ Getting object=TIMESTEP
+ Getting object=OUTPUT:DIAGNOSTICS
+ Getting object=SIMULATIONCONTROL
+ Getting object=OUTPUT:SURFACES:DRAWING
+ Getting object=OUTPUT:VARIABLEDICTIONARY
+ Getting object=OUTPUT:CONSTRUCTIONS
+ Getting object=OUTPUT:ENERGYMANAGEMENTSYSTEM
+ Getting object=OUTPUT:TABLE:SUMMARYREPORTS
+ Getting object=OUTPUT:VARIABLE
+ Getting object=RUNPERIOD
+ Getting object=SITE:LOCATION
+ Getting object=SCHEDULE:COMPACT
+  Processing Schedule Input -- Start
+ Getting object=SCHEDULETYPELIMITS
+ Getting object=EXTERNALINTERFACE:SCHEDULE
+  Processing Schedule Input -- Complete
+ Getting object=BUILDING
+ Getting object=SURFACECONVECTIONALGORITHM:INSIDE
+ Getting object=SURFACECONVECTIONALGORITHM:OUTSIDE
+ Getting object=MATERIAL
+ Getting object=WINDOWMATERIAL:GLAZING
+ Getting object=WINDOWMATERIAL:SHADE
+ Getting object=CONSTRUCTION
+ Getting object=ZONE
+ Getting object=GLOBALGEOMETRYRULES
+ Getting object=BUILDINGSURFACE:DETAILED
+ Getting object=WINDOWPROPERTY:SHADINGCONTROL
+ Getting object=FENESTRATIONSURFACE:DETAILED
+ Getting object=PEOPLE
+ Getting object=SURFACEPROPERTY:CONVECTIONCOEFFICIENTS
+ Getting object=AIRFLOWNETWORK:SIMULATIONCONTROL
+ Getting object=AIRFLOWNETWORK:MULTIZONE:ZONE
+ Getting object=AIRFLOWNETWORK:MULTIZONE:EXTERNALNODE
+ Getting object=AIRFLOWNETWORK:MULTIZONE:SURFACE
+ Getting object=AIRFLOWNETWORK:MULTIZONE:COMPONENT:DETAILEDOPENING
+ Getting object=AIRFLOWNETWORK:MULTIZONE:REFERENCECRACKCONDITIONS
+ Getting object=AIRFLOWNETWORK:MULTIZONE:SURFACE:CRACK
+ Getting object=AIRFLOWNETWORK:MULTIZONE:WINDPRESSURECOEFFICIENTARRAY
+ Getting object=AIRFLOWNETWORK:MULTIZONE:WINDPRESSURECOEFFICIENTVALUES
+ Getting object=EXTERNALINTERFACE:ACTUATOR
+ Getting object=ZONECONTROL:THERMOSTAT
+ Getting object=THERMOSTATSETPOINT:SINGLEHEATING
+ Getting object=NODELIST
+ Getting object=ZONEHVAC:EQUIPMENTCONNECTIONS
+ Getting object=ZONEHVAC:EQUIPMENTLIST
+ Getting object=ZONEHVAC:UNITHEATER
+ Getting object=FAN:CONSTANTVOLUME
+ Getting object=COIL:HEATING:ELECTRIC
+ Getting object=EXTERNALINTERFACE
+ Getting object=OUTPUTCONTROL:TABLE:STYLE
+ MonthlyInputCount=           0
+ sizeMonthlyInput=           0
+ MonthlyFieldSetInputCount=           0
+ sizeMonthlyFieldSetInput=           0
+ MonthlyTablesCount=           0
+ MonthlyColumnsCount=           0
+ sizeReportName=         100
+ numReportName=          12
+ sizeSubTable=         100
+ numSubTable=          54
+ sizeColumnTag=         400
+ numColumnTag=         314
+ sizeTableEntry=         600
+ numTableEntry=         587
+ sizeCompSizeTableEntry=         100
+ numCompSizeTableEntry=           3
+ NumOfRVariable=        1328
+ NumOfRVariable(Total)=        1328
+ NumOfRVariable(Actual)=          25
+ NumOfRVariable(Summed)=          11
+ NumOfRVariable(Meter)=          11
+ NumOfIVariable=         104
+ NumOfIVariable(Total)=         104
+ NumOfIVariable(Actual)=           0
+ NumOfIVariable(Summed)=           0
+ MaxRVariable=        1000
+ MaxIVariable=          10
+ NumEnergyMeters=          25
+ NumVarMeterArrays=          11
+ maxUniqueKeyCount=        1500
+ maxNumberOfFigures=           0
+ MAXHCArrayBounds=          10
+ MaxVerticesPerSurface=           4
+ NumReportList=         500
+ InstMeterCacheSize=        1000
+ ClippingAlgorithm=SutherlandHodgman
+ MonthlyFieldSetInputCount=           0
+ NumConsideredOutputVariables=          14
+ MaxConsideredOutputVariables=          14
+ numActuatorsUsed=           0
+ numEMSActuatorsAvailable=         150
+ maxEMSActuatorsAvailable=        1000
+ numInternalVariablesUsed=           0
+ numEMSInternalVarsAvailable=           8
+ maxEMSInternalVarsAvailable=        1000
+ NumOfNodeConnections=          10
+ MaxNumOfNodeConnections=        1000

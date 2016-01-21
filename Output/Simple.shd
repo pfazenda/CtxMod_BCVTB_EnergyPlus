@@ -1,0 +1,78 @@
+ ==== Base does not Surround subsurface details ====
+ Surface=SURFACE_1 Partial-Overlap
+ Surface#=    1 NSides=    4
+ Vertex     1=(           0.00,           0.00,           3.00)
+ Vertex     2=(           0.00,           0.00,           0.00)
+ Vertex     3=(          12.00,           0.00,           0.00)
+ Vertex     4=(          12.00,           0.00,           3.00)
+ SubSurface=DOOR1
+ Surface#=    3 NSides=    4
+ Vertex     1=(           9.00,           0.00,           2.10)
+ Vertex     2=(          10.00,           0.00,           2.10)
+ Vertex     3=(          10.00,           0.00,           0.00)
+ Vertex     4=(           9.00,           0.00,           0.00)
+ ================================
+ Shadowing Combinations
+ ..Solar Distribution=Minimal Shadowing, Detached Shading will not be used in shadowing calculations
+..In the following, only the first 10 reference surfaces will be shown.
+..But all surfaces are used in the calculations.
+ ==================================
+ Surface=SURFACE_1 is used as Receiving Surface in calculations and is convex.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           2
+ ....Surface=WINDOW1
+ ....Surface=DOOR1
+ ==================================
+ Surface=WINDOW1 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=DOOR1 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=SURFACE_2 is used as Receiving Surface in calculations and is convex.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           1
+ ....Surface=WINDOW2
+ ==================================
+ Surface=WINDOW2 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=SURFACE_3 is used as Receiving Surface in calculations and is convex.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           1
+ ....Surface=WINDOW3
+ ==================================
+ Surface=WINDOW3 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=SURFACE_4 is used as Receiving Surface in calculations and is convex.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           1
+ ....Surface=WINDOW4
+ ==================================
+ Surface=WINDOW4 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=SURFACE_5 is not used as Receiving Surface in calculations.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0
+ ==================================
+ Surface=SURFACE_6 is used as Receiving Surface in calculations and is convex.
+ Number of general casting surfaces=           0
+ Number of back surfaces=           0
+ Number of receiving sub surfaces=           0

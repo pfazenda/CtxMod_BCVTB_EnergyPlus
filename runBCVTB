@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+
+#Run BCBTB on system.xml
+/home/pfazenda/bcvtb/bin/bcvtb system.xml & 
+
+

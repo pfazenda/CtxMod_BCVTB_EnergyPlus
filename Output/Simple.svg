@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<svg width="250mm" height="200mm" viewBox="0 0   2500    1500"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+<g font-family="Verdana" font-size="8" >
+  <rect x="   700" y="    20" width="   200" height="    20" style = "fill:chartreuse; stroke: Black;"/>     1
+  <text x="   702" y="    33">ZONE_1</text>
+  <rect x="   200" y="    20" width="   200" height="    20" style = "fill:silver; stroke: Black;"/>     2
+  <text x="   202" y="    33">ZONE1UNITHEATFAN</text>
+  <rect x="   450" y="    20" width="   200" height="    20" style = "fill:salmon; stroke: Black;"/>     3
+  <text x="   452" y="    33">ZONE1UNITHEATHEATINGCOIL</text>
+  <line x1="   400" y1="    30" x2="   450" y2="    30" style = "stroke: Black;"/>
+  <line x1="   650" y1="    30" x2="   700" y2="    30" style = "stroke: Black;"/>
+  <line x1="   200" y1="    30" x2="   175" y2="    30" style = "stroke: Black;"/>
+  <line x1="   175" y1="    30" x2="   175" y2="     0" style = "stroke: Black;"/>
+  <line x1="   175" y1="     0" x2="   925" y2="     0" style = "stroke: Black;"/>
+  <line x1="   925" y1="     0" x2="   925" y2="    30" style = "stroke: Black;"/>
+  <line x1="   925" y1="    30" x2="   900" y2="    30" style = "stroke: Black;"/>
+  <text x="   200" y="    80">Unused Non-Parent Objects:</text>
+  <text x="   200" y="   120">
+The following are not supported: objects related to controls, AirTerminal:SingleDuct:Uncontrolled, or ZoneHVAC:IdealLoadsAirSystem</text>
+</g>
+</svg>

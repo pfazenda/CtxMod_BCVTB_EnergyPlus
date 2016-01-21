@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+
+#Run EnergyPlus on Simple.idf using PRT_Lisboa_085360_INETI Weather File
+runenergyplus Simple.idf PRT_Lisboa.085360_INETI
+cat Output/Simple.err
+
