@@ -35,11 +35,11 @@ Brief Description
 
 The CtxMod_BCVTB_EnergyPlus repository contains simulation files used in the application example for Context-based Thermodynamic Modeling of Building Spaces. 
 These files contain the simulation of a single Thermal Zone using the Buildings Controls Virtual Test Bed (BCVTB) and EnergyPlus, including the Matlab simulation of the same building using a 
-Context-based model. 
+Context-based model.   
 
-In this repository we outline the following files:
+In this repository we outline the following files:  
 
 
-Simple.idf: The EnergyPlus input building used in the simulation.
-system.xml: The BCVTB system description. 
-Model.m: Simulation of the Context-based model.
+Simple.idf: The EnergyPlus input building used in the simulation.  
+system.xml: The BCVTB system description.   
+Model.m: Simulation of the Context-based model.  
